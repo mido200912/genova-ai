@@ -4,7 +4,7 @@ class OpenRouterService {
     constructor() {
         this.apiKey = process.env.OPENROUTER_API_KEY;
         this.apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-        this.model = 'google/gemini-2.0-flash-lite-preview-02-05:free';
+        this.model = 'google/gemini-2.0-flash-lite-preview-02-05';
     }
 
     /**
