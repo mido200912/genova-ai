@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class OpenRouterService {
     constructor() {
-        this.apiKey = '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';
+        this.apiKey = process.env.OPENROUTER_API_KEY;
         this.apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
         this.model = 'minimax/minimax-m2.5';
     }
