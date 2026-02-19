@@ -1,0 +1,57 @@
+.medical-disclaimer {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1));
+    border: 2px solid var(--warning-500);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.disclaimer-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.disclaimer-content {
+    flex: 1;
+}
+
+.disclaimer-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--warning-600);
+    margin-bottom: 0.5rem;
+}
+
+.disclaimer-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.disclaimer-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .medical-disclaimer {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .disclaimer-icon {
+        font-size: 1.5rem;
+    }
+
+    .disclaimer-title {
+        font-size: 1rem;
+    }
+
+    .disclaimer-text {
+        font-size: 0.8125rem;
+    }
+}
