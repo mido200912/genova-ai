@@ -13,6 +13,17 @@ class OpenRouterService {
      * @returns {Promise<Object>} - Structured AI analysis
      */
     async analyzeSymptoms(symptoms) {
+        // Debug for Vercel logs (safe)
+        console.log('AI Config Check:', {
+            hasKey: !!this.apiKey,
+            keyLength: this.apiKey ? this.apiKey.length : 0,
+            model: this.model
+        });
+
+        if (!this.apiKey || this.apiKey === 'your_openrouter_api_key_here') {
+            throw new Error('AI Service Error: OPENROUTER_API_KEY is not set on the server.');
+        }
+
         try {
             const systemPrompt = `You are a medical assistant AI that helps users understand their symptoms. You must:
 1. NEVER diagnose diseases
