@@ -13,6 +13,12 @@ class OpenRouterService {
      * @returns {Promise<Object>} - Structured AI analysis
      */
     async analyzeSymptoms(symptoms) {
+        console.log('OpenRouter Key Presence Check:', {
+            hasKey: !!this.apiKey,
+            keyLength: this.apiKey ? this.apiKey.length : 0,
+            model: this.model
+        });
+
         if (!this.isConfigured()) {
             throw new Error('AI Service is not configured. (Missing OpenRouter API Key)');
         }
