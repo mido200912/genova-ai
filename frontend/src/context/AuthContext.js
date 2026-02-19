@@ -68,10 +68,10 @@ export const AuthProvider = ({ children }) => {
                 return { success: true };
             }
         } catch (err) {
+            console.error('Registration API Error:', err.response?.data);
             let message = 'Registration failed';
 
             if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
-                // If there are specific validation errors, use the first one
                 message = err.response.data.errors[0].msg;
             } else if (err.response?.data?.message) {
                 message = err.response.data.message;

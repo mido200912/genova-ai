@@ -22,6 +22,7 @@ const generateToken = (userId) => {
  * POST /api/auth/register
  */
 exports.register = async (req, res) => {
+    console.log('REGISTER_BODY:', req.body);
     try {
         // Validate input
         const errors = validationResult(req);
