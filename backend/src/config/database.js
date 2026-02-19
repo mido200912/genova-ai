@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 // Connection cache for serverless environments
 let isConnected = false;
 
