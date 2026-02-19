@@ -1,20 +1,28 @@
-const mongoose = require('mongoose');
+// Connection cache for serverless environments
+let isConnected = false;
 
 const connectDB = async () => {
+    mongoose.set('strictQuery', true);
+
     if (!process.env.MONGODB_URI) {
-        console.error('❌ MONGODB_URI is not defined in environment variables');
+        console.error('❌ MONGODB_URI is missing');
+        return;
+    }
+
+    if (isConnected) {
+        console.log('✅ Using existing MongoDB connection');
         return;
     }
 
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI);
-        console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+        const db = await mongoose.connect(process.env.MONGODB_URI, {
+            serverSelectionTimeoutMS: 10000, // Timeout after 10s
+        });
+
+        isConnected = db.connections[0].readyState;
+        console.log('✅ New MongoDB connection established');
     } catch (error) {
-        console.error(`❌ MongoDB Connection Error: ${error.message}`);
-        // Don't exit process in serverless environments
-        if (process.env.NODE_ENV !== 'production') {
-            process.exit(1);
-        }
+        console.error('❌ MongoDB Error:', error.message);
     }
 };
 
