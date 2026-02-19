@@ -4,7 +4,7 @@ class OpenRouterService {
     constructor() {
         this.apiKey = process.env.OPENROUTER_API_KEY;
         this.apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-        this.model = 'meta-llama/llama-3-8b-instruct';
+        this.model = 'google/gemini-2.0-flash-lite-preview-02-05:free';
     }
 
     /**
@@ -59,7 +59,6 @@ Please analyze these symptoms and provide structured health insights in JSON for
                     ],
                     temperature: 0.7,
                     max_tokens: 1000,
-                    response_format: { type: 'json_object' },
                 },
                 {
                     headers: {
@@ -173,6 +172,10 @@ Please analyze these symptoms and provide structured health insights in JSON for
             return response.data.choices[0].message.content;
         } catch (error) {
             console.error('OpenRouter Chat Error:', error.message);
+            if (error.response) {
+                console.error('OpenRouter Error Data:', error.response.data);
+                throw new Error(`AI Service: ${error.response.data.error?.message || error.message}`);
+            }
             throw error;
         }
     }
