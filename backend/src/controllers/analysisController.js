@@ -44,7 +44,7 @@ exports.analyzeSymptoms = async (req, res) => {
             aiResponse,
             metadata: {
                 processingTime,
-                modelUsed: 'meta-llama/llama-3-8b-instruct',
+                modelUsed: 'google/gemini-2.0-flash-lite-preview-02-05:free',
                 analyzed: true,
             },
         });

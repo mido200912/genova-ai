@@ -48,7 +48,7 @@ const Analysis = () => {
 
         try {
             const response = await analysisAPI.analyzeSymptoms(symptoms);
-            setResult(response.data.data.aiResponse);
+            setResult(response.data.data.result);
         } catch (err) {
             setError(err.response?.data?.error || 'Failed to analyze symptoms');
         } finally {

@@ -13,6 +13,9 @@ class OpenRouterService {
      * @returns {Promise<Object>} - Structured AI analysis
      */
     async analyzeSymptoms(symptoms) {
+        if (!this.isConfigured()) {
+            throw new Error('AI Service is not configured. (Missing OpenRouter API Key)');
+        }
         try {
             const systemPrompt = `You are a medical assistant AI that helps users understand their symptoms. You must:
 1. NEVER diagnose diseases
@@ -48,14 +51,8 @@ Please analyze these symptoms and provide structured health insights in JSON for
                 {
                     model: this.model,
                     messages: [
-                        {
-                            role: 'system',
-                            content: systemPrompt,
-                        },
-                        {
-                            role: 'user',
-                            content: userPrompt,
-                        },
+                        { role: 'system', content: systemPrompt },
+                        { role: 'user', content: userPrompt },
                     ],
                     temperature: 0.7,
                     max_tokens: 1000,
@@ -67,7 +64,7 @@ Please analyze these symptoms and provide structured health insights in JSON for
                         'HTTP-Referer': 'https://genova-ai.app',
                         'X-Title': 'Genova AI Pre-Diagnostic Assistant',
                     },
-                    timeout: 30000,
+                    timeout: 45000,
                 }
             );
 
@@ -75,15 +72,18 @@ Please analyze these symptoms and provide structured health insights in JSON for
                 throw new Error('Invalid response from AI service');
             }
 
-            const aiContent = response.data.choices[0].message.content;
+            let aiContent = response.data.choices[0].message.content;
+
+            // Clean AI content if it contains markdown code blocks
+            aiContent = aiContent.replace(/```json\n?/, '').replace(/```/, '').trim();
 
             // Parse JSON response
             let analysisResult;
             try {
                 analysisResult = JSON.parse(aiContent);
             } catch (parseError) {
-                console.error('JSON Parse Error:', parseError);
-                throw new Error('AI returned invalid JSON format');
+                console.error('JSON Parse Error. Content:', aiContent);
+                throw new Error('AI returned invalid JSON format. Please try again.');
             }
 
             // Validate required fields
@@ -99,34 +99,16 @@ Please analyze these symptoms and provide structured health insights in JSON for
             const missingFields = requiredFields.filter(field => analysisResult[field] === undefined);
 
             if (missingFields.length > 0) {
-                console.error('Missing fields:', missingFields);
                 throw new Error(`AI response missing required fields: ${missingFields.join(', ')}`);
-            }
-
-            // Ensure proper types
-            analysisResult.emergency_flag = Boolean(analysisResult.emergency_flag);
-
-            if (!Array.isArray(analysisResult.possible_conditions)) {
-                analysisResult.possible_conditions = [];
-            }
-
-            if (!Array.isArray(analysisResult.suggested_tests)) {
-                analysisResult.suggested_tests = [];
             }
 
             return analysisResult;
         } catch (error) {
             console.error('OpenRouter Service Error:', error.message);
-
             if (error.response) {
                 console.error('API Error Response:', error.response.data);
                 throw new Error(`AI Service Error: ${error.response.data.error?.message || 'Unknown error'}`);
             }
-
-            if (error.code === 'ECONNABORTED') {
-                throw new Error('AI service request timeout. Please try again.');
-            }
-
             throw error;
         }
     }
