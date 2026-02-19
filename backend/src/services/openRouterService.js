@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class OpenRouterService {
     constructor() {
-        this.apiKey = process.env.OPENROUTER_API_KEY;
+        this.apiKey = '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';
         this.apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
         this.model = 'google/gemini-2.0-flash-lite-preview-02-05';
     }
