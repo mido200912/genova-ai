@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://genova-ai-backend.vercel.app/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://genova-ai-backend-gulq.vercel.app/api';
 
 // Create axios instance
 const api = axios.create({
