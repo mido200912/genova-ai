@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 
 const ThemeContext = createContext(null);
 
@@ -11,29 +11,17 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light');
-
+    // Force dark mode globally
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-        applyTheme(savedTheme);
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.style.backgroundColor = '#0f172a';
+        document.body.style.color = '#f1f5f9';
     }, []);
 
-    const applyTheme = (newTheme) => {
-        document.documentElement.setAttribute('data-theme', newTheme);
-    };
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
-    };
-
     const value = {
-        theme,
-        toggleTheme,
-        isDark: theme === 'dark',
+        theme: 'dark',
+        toggleTheme: () => { }, // No-op
+        isDark: true,
     };
 
     return (

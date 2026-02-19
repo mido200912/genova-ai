@@ -1,59 +1,29 @@
 :root {
   /* --- Brand Colors: Deep Medical Trust --- */
   --brand-primary: #3b82f6;
-  /* Bright reliable blue */
   --brand-secondary: #0ea5e9;
-  /* Clean sky blue */
   --brand-accent: #6366f1;
-  /* Deep tech indigo */
 
   --brand-emerald: #10b981;
-  /* Success/Health */
   --brand-rose: #f43f5e;
-  /* Alert/Emergency */
   --brand-amber: #f59e0b;
-  /* Warning */
 
-  /* --- Neutral Base (Light Mode) --- */
-  --bg-base: #f8fafc;
-  /* Slightly cool white */
-  --bg-surface: #ffffff;
-  /* Pure white cards */
-  --bg-glass: rgba(255, 255, 255, 0.7);
-  /* Frosted glass */
-
-  --text-main: #0f172a;
-  /* Deep navy text (almost black) */
-  --text-muted: #64748b;
-  /* Technical gray */
-  --text-light: #94a3b8;
-  /* Subtler gray */
-
-  --border-light: #e2e8f0;
-  /* Very subtle borders */
-  --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 20px 50px -12px rgba(59, 130, 246, 0.25);
-
-  /* --- Dark Mode Defaults --- */
-  --dark-bg: #0f172a;
-  /* Deep space blue */
-  --dark-surface: #1e293b;
-  /* Lighter navy */
-  --dark-glass: rgba(30, 41, 59, 0.7);
-  --dark-border: #334155;
-}
-
-[data-theme="dark"] {
-  --bg-base: var(--dark-bg);
-  --bg-surface: var(--dark-surface);
-  --bg-glass: var(--dark-glass);
+  /* --- Dark Mode (Now Default) --- */
+  --bg-base: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-glass: rgba(30, 41, 59, 0.8);
 
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
+  --text-light: #64748b;
 
-  --border-light: var(--dark-border);
+  --border-light: #334155;
   --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
 }
+
+/* Remove Light Mode Overrides */
+/* Root is already Dark */
 
 /* Reset & Fonts */
 * {
@@ -95,12 +65,8 @@ h6 {
   background: var(--bg-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: var(--shadow-soft);
-}
-
-[data-theme="dark"] .glass {
-  border-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Buttons */
