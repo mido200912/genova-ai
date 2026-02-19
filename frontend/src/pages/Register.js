@@ -60,6 +60,8 @@ const Register = () => {
             gender: formData.gender || undefined,
         };
 
+        console.log('Sending registration data:', userData);
+
         const result = await register(userData);
 
         if (result.success) {

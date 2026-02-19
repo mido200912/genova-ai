@@ -68,7 +68,15 @@ export const AuthProvider = ({ children }) => {
                 return { success: true };
             }
         } catch (err) {
-            const message = err.response?.data?.message || 'Registration failed';
+            let message = 'Registration failed';
+
+            if (err.response?.data?.errors && Array.isArray(err.response.data.errors)) {
+                // If there are specific validation errors, use the first one
+                message = err.response.data.errors[0].msg;
+            } else if (err.response?.data?.message) {
+                message = err.response.data.message;
+            }
+
             setError(message);
             return { success: false, error: message };
         }
