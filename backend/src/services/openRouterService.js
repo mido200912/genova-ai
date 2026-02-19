@@ -132,6 +132,9 @@ Please analyze these symptoms and provide structured health insights in JSON for
     }
 
     async chat(message, history = []) {
+        if (!this.isConfigured()) {
+            throw new Error('AI Service is not configured. (Missing OpenRouter API Key)');
+        }
         try {
             const systemPrompt = `You are Genova AI, a helpful and empathetic medical health assistant. 
             - Answer general health questions accurately.

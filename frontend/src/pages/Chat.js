@@ -53,9 +53,10 @@ const Chat = () => {
             ]);
         } catch (error) {
             console.error('Chat error:', error);
+            const errorMessage = error.response?.data?.error || error.response?.data?.message || "I apologize, but I'm having trouble connecting right now. Please try again later.";
             setMessages(prev => [
                 ...prev,
-                { role: 'assistant', content: "I apologize, but I'm having trouble connecting right now. Please try again later." }
+                { role: 'assistant', content: errorMessage }
             ]);
         } finally {
             setLoading(false);
