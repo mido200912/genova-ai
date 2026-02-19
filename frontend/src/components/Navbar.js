@@ -2,25 +2,22 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
+
 import {
     Activity,
-    Sun,
-    Moon,
     LogOut,
     User,
     LayoutDashboard,
     Menu,
     X,
     MessageCircle,
-    BookOpen,
-    Stethoscope
+    BookOpen
 } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
-    const { theme, toggleTheme } = useTheme();
+
     const navigate = useNavigate();
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +72,7 @@ const Navbar = () => {
                         </div>
                     )}
 
-                   
+
                 </div>
 
                 {/* Mobile Menu Toggle */}

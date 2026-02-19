@@ -8,13 +8,8 @@ import {
     Zap,
     Activity,
     ArrowRight,
-    CheckCircle2,
-    MessageSquare,
     Stethoscope,
-    Users,
-    ChevronDown,
-    Brain,
-    Lock
+    Brain
 } from 'lucide-react';
 import './Home.css';
 

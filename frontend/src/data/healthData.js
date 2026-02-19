@@ -200,11 +200,11 @@ export const articles = [
         summary: 'Anemia is a condition in which you lack enough healthy red blood cells to carry adequate oxygen to your body\'s tissues.',
         content: `Anemia is a generic term for a condition where there is a deficiency in the number or quality of red blood cells. The most common cause is iron deficiency, but there are other types as well.
         
-        Iron-Deficiency Anemia: This type is caused by a shortage of iron in your body. Your bone marrow needs iron to make hemoglobin. Without adequate iron, your body can\'t produce enough hemoglobin for red blood cells. Treatment often involves iron supplements and changes to your diet.
+        Iron-Deficiency Anemia: This type is caused by a shortage of iron in your body. Your bone marrow needs iron to make hemoglobin. Without adequate iron, your body can't produce enough hemoglobin for red blood cells. Treatment often involves iron supplements and changes to your diet.
         
         Vitamin Deficiency Anemia: In addition to iron, your body needs folate and vitamin B-12 to produce enough healthy red blood cells. A diet lacking in these and other key nutrients can cause decreased red blood cell production.
         
-        Aplastic Anemia: This rare, life-threatening anemia occurs when your body doesn\'t produce enough red blood cells. Causes include infections, certain medicines, autoimmune diseases and exposure to toxic chemicals.
+        Aplastic Anemia: This rare, life-threatening anemia occurs when your body doesn't produce enough red blood cells. Causes include infections, certain medicines, autoimmune diseases and exposure to toxic chemicals.
         
         Hemolytic Anemias: This group of anemias develops when red blood cells are destroyed faster than bone marrow can replace them. Certain blood diseases can cause increased red blood cell destruction.
         
