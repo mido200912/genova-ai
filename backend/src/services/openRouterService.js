@@ -2,9 +2,9 @@ const axios = require('axios');
 
 class OpenRouterService {
     constructor() {
-        this.apiKey = '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';
+        this.apiKey = process.env.OPENROUTER_API_KEY;
         this.apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-        this.model = 'google/gemini-2.0-flash-lite-preview-02-05';
+        this.model = 'minimax/minimax-m2.5';
     }
 
     /**
@@ -13,15 +13,6 @@ class OpenRouterService {
      * @returns {Promise<Object>} - Structured AI analysis
      */
     async analyzeSymptoms(symptoms) {
-        console.log('OpenRouter Key Presence Check:', {
-            hasKey: !!this.apiKey,
-            keyLength: this.apiKey ? this.apiKey.length : 0,
-            model: this.model
-        });
-
-        if (!this.isConfigured()) {
-            throw new Error('AI Service is not configured. (Missing OpenRouter API Key)');
-        }
         try {
             const systemPrompt = `You are a medical assistant AI that helps users understand their symptoms. You must:
 1. NEVER diagnose diseases
