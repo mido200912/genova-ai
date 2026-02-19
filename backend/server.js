@@ -37,6 +37,18 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware to clean up request body keys (fix for " name" issue)
+app.use((req, res, next) => {
+  if (req.body && typeof req.body === 'object') {
+    const cleanBody = {};
+    Object.keys(req.body).forEach(key => {
+      cleanBody[key.trim()] = req.body[key];
+    });
+    req.body = cleanBody;
+  }
+  next();
+});
+
 // Routes
 app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/analysis', require('./src/routes/analysisRoutes'));

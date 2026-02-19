@@ -6,6 +6,10 @@ const { validationResult } = require('express-validator');
  * Generate JWT Token
  */
 const generateToken = (userId) => {
+    if (!process.env.JWT_SECRET) {
+        console.error('❌ JWT_SECRET is not defined');
+        return 'temporary_token_for_missing_secret';
+    }
     return jwt.sign(
         { userId },
         process.env.JWT_SECRET,
