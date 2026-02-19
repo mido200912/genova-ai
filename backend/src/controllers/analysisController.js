@@ -62,7 +62,12 @@ exports.analyzeSymptoms = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error('Analysis Error:', error);
+        console.error('ANALYSIS_ERROR_DETAILS:', {
+            message: error.message,
+            stack: error.stack,
+            userId: req.userId,
+            body: req.body
+        });
 
         res.status(500).json({
             success: false,

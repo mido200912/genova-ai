@@ -64,10 +64,11 @@ Please analyze these symptoms and provide structured health insights in JSON for
                         'HTTP-Referer': 'https://genova-ai.app',
                         'X-Title': 'Genova AI Pre-Diagnostic Assistant',
                     },
-                    timeout: 45000,
+                    timeout: 25000,
                 }
             );
 
+            console.log('OpenRouter Response Status:', response.status);
             if (!response.data || !response.data.choices || !response.data.choices[0]) {
                 throw new Error('Invalid response from AI service');
             }

@@ -14,28 +14,8 @@ const healthAnalysisSchema = new mongoose.Schema({
         maxlength: [2000, 'Input cannot exceed 2000 characters'],
     },
     aiResponse: {
-        analysis_summary: {
-            type: String,
-            required: true,
-        },
-        possible_conditions: [{
-            condition: String,
-            risk_level: {
-                type: String,
-                enum: ['Low', 'Medium', 'High'],
-            },
-            reason: String,
-        }],
-        recommended_specialist: String,
-        suggested_tests: [String],
-        emergency_flag: {
-            type: Boolean,
-            default: false,
-        },
-        disclaimer: {
-            type: String,
-            default: 'This result is for educational purposes only and is not a medical diagnosis.',
-        },
+        type: mongoose.Schema.Types.Mixed,
+        required: true
     },
     metadata: {
         processingTime: Number,
